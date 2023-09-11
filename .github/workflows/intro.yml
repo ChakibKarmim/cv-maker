@@ -1,11 +1,22 @@
-name: Hello world
+name: PNPM to bun
 
 on: 
   push:
     
 jobs:
-  hello-world: 
+  build: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Hello world"
+
+      - name: Show node version
+        run: node --version
+
+      - name: Setup Bun              
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build the app
+        run: bun build
